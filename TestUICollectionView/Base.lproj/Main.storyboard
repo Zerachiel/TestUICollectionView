@@ -12,16 +12,16 @@
                         <viewControllerLayoutGuide type="top" id="upQ-33-Wt1"/>
                         <viewControllerLayoutGuide type="bottom" id="T1M-j3-KpD"/>
                     </layoutGuides>
-                    <view key="view" autoresizesSubviews="NO" contentMode="TopLeft" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" multipleTouchEnabled="YES" contentMode="TopLeft" verticalHuggingPriority="1000" scrollEnabled="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gWP-Rz-vdn">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gWP-Rz-vdn">
                                 <rect key="frame" x="0.0" y="58" width="320" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.58431372550000005" green="0.1450980392" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="331" id="DGQ-IK-Dl8"/>
+                                    <constraint firstAttribute="height" constant="331" id="uIC-Ly-n6T"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hbp-YB-0jv">
                                     <size key="itemSize" width="50" height="50"/>
@@ -51,7 +51,6 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="OKJ-Er-CWB"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="kkN-Vp-P74"/>
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9u-Pp-XAM">
@@ -76,7 +75,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="gWP-Rz-vdn" id="r7g-52-yf0"/>
-                        <outlet property="verticalConstraint" destination="DGQ-IK-Dl8" id="eKP-Xb-SjY"/>
+                        <outlet property="verticalLayoutConstraint" destination="uIC-Ly-n6T" id="X3A-uF-wn5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

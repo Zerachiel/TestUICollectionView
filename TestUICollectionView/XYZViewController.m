@@ -11,31 +11,24 @@
 @interface XYZViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalLayoutConstraint;
+@property int count;
 @end
 
 @implementation XYZViewController
 
 - (IBAction)updateButtonPressed:(id)sender
 {
-    NSLog(@"before: bounds = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.bounds), NSStringFromCGSize(self.collectionView.contentSize));
-    self.collectionView.contentSize = CGSizeMake(300, 2000);
-    self.verticalConstraint.constant = self.collectionView.contentSize.height;
-    self.collectionView.bounds = CGRectMake(0, 0, 300, 2000);
-    [self.collectionView.constraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *constraint, NSUInteger index, BOOL *stop) {
-        NSLog(@"constraint: %@", constraint);
-    }];
-    NSLog(@"update button pressed");
-    NSLog(@"after: bounds = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.bounds), NSStringFromCGSize(self.collectionView.contentSize));
-
+    self.count += 10;
+    [self.collectionView reloadData];
+    self.verticalLayoutConstraint.constant = self.collectionView.contentSize.height;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    //self.collectionView.autoresizingMask = UIViewAutoresizingNone;
+    self.count = 10;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +39,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 100;
+    return self.count;
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
