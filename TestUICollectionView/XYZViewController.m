@@ -18,11 +18,17 @@
 
 - (IBAction)updateButtonPressed:(id)sender
 {
+    NSLog(@"before: frame = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.frame), NSStringFromCGSize(self.collectionView.contentSize));
     self.collectionView.contentSize = CGSizeMake(300, 2000);
     self.collectionView.frame = CGRectMake(0, 0, 300, 2000);
     [self.collectionView reloadData];
     [self.collectionView.collectionViewLayout invalidateLayout];
+    [self.collectionView setNeedsLayout];
+    [self.collectionView setNeedsDisplay];
+    [self.collectionView setScrollEnabled:YES];
     NSLog(@"update button pressed");
+    NSLog(@"after: frame = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.frame), NSStringFromCGSize(self.collectionView.contentSize));
+
 }
 
 - (void)viewDidLoad
