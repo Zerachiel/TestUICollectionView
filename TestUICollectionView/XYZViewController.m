@@ -11,6 +11,7 @@
 @interface XYZViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalConstraint;
 
 @end
 
@@ -18,16 +19,15 @@
 
 - (IBAction)updateButtonPressed:(id)sender
 {
-    NSLog(@"before: frame = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.frame), NSStringFromCGSize(self.collectionView.contentSize));
+    NSLog(@"before: bounds = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.bounds), NSStringFromCGSize(self.collectionView.contentSize));
     self.collectionView.contentSize = CGSizeMake(300, 2000);
-    self.collectionView.frame = CGRectMake(0, 0, 300, 2000);
-    [self.collectionView reloadData];
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.collectionView setNeedsLayout];
-    [self.collectionView setNeedsDisplay];
-    [self.collectionView setScrollEnabled:YES];
+    self.verticalConstraint.constant = self.collectionView.contentSize.height;
+    self.collectionView.bounds = CGRectMake(0, 0, 300, 2000);
+    [self.collectionView.constraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *constraint, NSUInteger index, BOOL *stop) {
+        NSLog(@"constraint: %@", constraint);
+    }];
     NSLog(@"update button pressed");
-    NSLog(@"after: frame = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.frame), NSStringFromCGSize(self.collectionView.contentSize));
+    NSLog(@"after: bounds = %@, contentSize = %@", NSStringFromCGRect(self.collectionView.bounds), NSStringFromCGSize(self.collectionView.contentSize));
 
 }
 
@@ -35,6 +35,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    //self.collectionView.autoresizingMask = UIViewAutoresizingNone;
 }
 
 - (void)didReceiveMemoryWarning
